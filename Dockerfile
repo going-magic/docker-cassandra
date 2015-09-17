@@ -24,7 +24,8 @@ RUN echo 'deb http://www.apache.org/dist/cassandra/debian 22x maidockn' >> /etc/
 
 ENV CASSANDRA_VERSION 2.2.1
 
-RUN apt-get install -y cassandra="$CASSANDRA_VERSION" \
+RUN apt-get update \
+	&& apt-get install -y cassandra="$CASSANDRA_VERSION" \
 	&& rm -rf /var/lib/apt/lists/*
 
 ENV CASSANDRA_CONFIG /etc/cassandra
