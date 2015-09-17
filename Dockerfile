@@ -1,8 +1,6 @@
 FROM debian:jessie
 
-MAINTAINER 1234567890 "going.magic@gmail.com"
-
-USER root
+MAINTAINER going "going.magic@gmail.com"
 
 RUN	echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee /etc/apt/sources.list.d/webupd8team-java.list \
 	&& echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee -a /etc/apt/sources.list.d/webupd8team-java.list \
@@ -13,8 +11,6 @@ RUN	echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true 
 RUN	apt-get update --fix-missing \
 	&& apt-get install -y oracle-java8-installer \
 	&& apt-get install oracle-java8-set-default
-
-RUN rm -rf /var/lib/apt/lists/*
 
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
