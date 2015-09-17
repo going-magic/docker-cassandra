@@ -13,7 +13,7 @@ RUN echo "deb http://debian.datastax.com/community stable main" | tee -a /etc/ap
 ENV CASSANDRA_VERSION 2.0.11
 
 RUN apt-get update \
-	&& apt-get install -y --force-yes cassandra="$CASSANDRA_VERSION" \
+	&& apt-get install dsc20=2.0.11-1 cassandra="$CASSANDRA_VERSION" \
 	&& rm -rf /var/lib/apt/lists/*
 
 ENV CASSANDRA_CONFIG /etc/cassandra
