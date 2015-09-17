@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM going/java
 
 MAINTAINER going "going.magic@gmail.com"
 
