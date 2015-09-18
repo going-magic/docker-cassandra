@@ -1,19 +1,13 @@
-FROM going/java
+FROM debian:jessie
 
-MAINTAINER going "going.magic@gmail.com"
-
-#
-# Start - COPY FROM cassandra 2.2.1
-# Remove apt-get update
-#
 RUN apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys 514A2AD631A57A16DD0047EC749D6EEC0353B12C
 
-RUN echo "deb http://debian.datastax.com/community stable main" | tee -a /etc/apt/sources.list.d/cassandra.sources.list
+RUN echo 'deb http://www.apache.org/dist/cassandra/debian 21x main' >> /etc/apt/sources.list.d/cassandra.list
 
-ENV CASSANDRA_VERSION 2.0.11
+ENV CASSANDRA_VERSION 2.1.9
 
 RUN apt-get update \
-	&& apt-get install dsc20=2.0.11-1 cassandra="$CASSANDRA_VERSION" \
+	&& apt-get install -y cassandra="$CASSANDRA_VERSION" \
 	&& rm -rf /var/lib/apt/lists/*
 
 ENV CASSANDRA_CONFIG /etc/cassandra
@@ -35,7 +29,3 @@ VOLUME /var/lib/cassandra
 # 9160: thrift service
 EXPOSE 7000 7001 7199 9042 9160
 CMD ["cassandra", "-f"]
-
-#
-# End - COPY FROM cassandra 2.2.1
-#
