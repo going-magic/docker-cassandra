@@ -20,6 +20,7 @@ RUN sed -ri ' \
 	' "$CASSANDRA_CONFIG/cassandra.yaml"
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
 VOLUME /var/lib/cassandra
